@@ -24,7 +24,7 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 142.1 76.2% 36.3%;
-    --radius: 0.2rem;
+    --radius: 0.3rem;
   }
 
   .dark {
@@ -81,10 +81,10 @@ body,
 
   .scrollbar::-webkit-scrollbar-thumb {
     border: 3px solid transparent;
-    @apply bg-primary/30 rounded-full border-2 border-transparent;
+    @apply bg-primary/50 rounded-full border-2 border-transparent;
   }
 
   .scrollbar::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary/50;
+    @apply bg-primary/70;
   }
 }
