@@ -119,7 +119,7 @@ const Map = () => {
           onMouseOut={handleMouseUp}
         />
         <div
-          className='group flex items-center justify-center absolute top-[500px] left-[900px] w-[300px] h-[300px] rounded-full border-2 border-slate-300 hover:scale-110 transition duration-300 hover:shadow-md'
+          className='group flex items-center justify-center absolute top-[400px] left-[900px] w-[300px] h-[300px] rounded-full border-2 border-slate-300 hover:scale-110 transition duration-300 hover:shadow-md'
           onClick={() => {
             router.push('/map/search');
           }}

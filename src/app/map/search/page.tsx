@@ -1,6 +1,8 @@
 'use client';
 
+import DialogButton from '@/components/DialogButton';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -11,6 +13,7 @@ const Map = () => {
   const imageUrl = '/PNG/0.png';
   const canvasRef = useRef(null);
   const router = useRouter();
+  const [hover, setHover] = useState<number>(-1);
 
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -69,6 +72,7 @@ const Map = () => {
 
   const handleMouseUp = () => {
     setIsDragging(false);
+    setHover(-1);
   };
 
   // 오른쪽 클릭 이벤트를 막는 핸들러 함수
@@ -97,29 +101,53 @@ const Map = () => {
 
         <Separator className='bg-slate-300 dark:bg-slate-700' />
       </header>
-      <div
-        className='w-fit mx-auto overflow-auto mt-16 scrollbar relative grid'
-        style={{ gridTemplateColumns: 'repeat(24, minmax(0, 1fr))' }}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onContextMenu={handleContextMenu}
-        onMouseOut={handleMouseUp}
-      >
-        {Array.from({ length: 450 }).map((_, index) => {
-          return (
-            <>
-              {(index + 1) % 25 === 0 ? null : (
-                <Image
-                  src={`/PNG/${index}.png`}
-                  alt='image'
-                  width={50}
-                  height={50}
-                />
-              )}
-            </>
-          );
-        })}
+      <div className='flex w-full'>
+        <div
+          className=' overflow-auto mt-16 scrollbar relative grid'
+          style={{ gridTemplateColumns: 'repeat(24, minmax(0, 1fr))' }}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onContextMenu={handleContextMenu}
+          onMouseOut={handleMouseUp}
+        >
+          {Array.from({ length: 450 }).map((_, index) => {
+            return (
+              <>
+                {(index + 1) % 25 === 0 ? null : (
+                  <DialogButton index={index}>
+                    <Image
+                      src={`/PNG/${index}.png`}
+                      alt='image'
+                      width={50}
+                      height={50}
+                      onMouseOver={() => {
+                        console.log(hover);
+                        setHover(index);
+                      }}
+                    />
+                  </DialogButton>
+                )}
+              </>
+            );
+          })}
+        </div>
+        <aside className='p-4'>
+          <Card className='w-[500px] m-auto'>
+            <CardContent className='mt-4'>
+              <div>
+                {hover === -1 ? null : (
+                  <Image
+                    src={`/PNG/${hover}.png`}
+                    alt='image'
+                    width={1000}
+                    height={1000}
+                  />
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        </aside>
       </div>
     </div>
   );
