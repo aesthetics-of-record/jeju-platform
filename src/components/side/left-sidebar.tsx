@@ -23,8 +23,8 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ className }) => {
       {
         icon: MdOutlineDashboard,
         label: 'Dashboard',
-        active: pathname === '/dashboard',
-        href: '/dashboard',
+        active: pathname === '/',
+        href: '/',
       },
       {
         icon: GrMapLocation,
