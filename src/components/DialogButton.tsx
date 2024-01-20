@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import SRImage from './SRImage';
 import { Card, CardContent } from './ui/card';
 import NonSRImage from './NonSRImage';
-import SegImage from './segImage';
+import SegImage from './SegImage';
 import { IoIosImage, IoIosImages } from 'react-icons/io';
 
 const DialogButton = ({
