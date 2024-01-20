@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
 
 const SRImage = ({ index }: { index: number | undefined }) => {
-  const imageUrl = `http://34.64.55.40/images/results/${index}_rlt.png`;
+  const imageUrl = `/api/sr_image?url=http://34.64.55.40/images/results/${index}_rlt.png`;
   const canvasRef = useRef(null);
   const router = useRouter();
 
