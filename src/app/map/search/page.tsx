@@ -1,6 +1,9 @@
 'use client';
 
 import DialogButton from '@/components/DialogButton';
+import SearchContextMenu from '@/components/SearchContextMenu';
+import SearchDialog from '@/components/SearchDialog';
+import SegYDialog from '@/components/SegYDialog';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -16,10 +19,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { TbWorldSearch } from 'react-icons/tb';
 
 const Map = () => {
-  const imageUrl = '/PNG/0.png';
   const canvasRef = useRef(null);
   const router = useRouter();
   const [hover, setHover] = useState<number>(-1);
+  const [clickIndex, setClickIndex] = useState<number>(-1);
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [openDialog2, setOpenDialog2] = useState<boolean>(false);
 
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -89,6 +94,16 @@ const Map = () => {
 
   return (
     <div className='w-full p-6'>
+      <SearchDialog
+        index={clickIndex}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+      />
+      <SegYDialog
+        index={clickIndex}
+        openDialog={openDialog2}
+        setOpenDialog={setOpenDialog2}
+      />
       <header className=''>
         <h1 className='font-black text-4xl'>JEJU-SEARCH</h1>
         <p className='text-sm text-slate-700 dark:text-slate-400'></p>
@@ -114,25 +129,31 @@ const Map = () => {
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
-          onContextMenu={handleContextMenu}
           onMouseOut={handleMouseUp}
         >
           {Array.from({ length: 450 }).map((_, index) => {
             return (
               <>
                 {(index + 1) % 25 === 0 ? null : (
-                  <DialogButton index={index}>
+                  <SearchContextMenu
+                    index={index}
+                    openDialog={openDialog}
+                    setOpenDialog={setOpenDialog}
+                    openDialog2={openDialog2}
+                    setOpenDialog2={setOpenDialog2}
+                  >
                     <Image
                       src={`/PNG/${index}.png`}
                       alt='image'
                       width={50}
                       height={50}
                       onMouseOver={() => {
-                        console.log(hover);
+                        // console.log(hover);
+                        setClickIndex(index);
                         setHover(index);
                       }}
                     />
-                  </DialogButton>
+                  </SearchContextMenu>
                 )}
               </>
             );

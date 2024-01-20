@@ -21,8 +21,16 @@ const DialogButton = ({
   index?: number;
 }) => {
   return (
-    <Dialog>
-      <DialogTrigger>{children}</DialogTrigger>
+    <Dialog onOpenChange={(open) => {
+      if (open === false) {}
+    }}>
+      <DialogTrigger
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        {children}
+      </DialogTrigger>
       <DialogContent className='h-[900px]'>
         <Tabs defaultValue='nonSR' className='w-[750px] mt-4 m-auto'>
           <TabsList className='grid w-full grid-cols-2'>
