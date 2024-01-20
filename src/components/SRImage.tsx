@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
-import { FaSearchLocation } from 'react-icons/fa';
+import { ClipLoader } from 'react-spinners';
 
 const SRImage = ({ index }: { index: number | undefined }) => {
   const imageUrl = `/api/sr_image?url=http://34.64.55.40/images/results/${index}_rlt.png`;
@@ -16,6 +16,7 @@ const SRImage = ({ index }: { index: number | undefined }) => {
   const [startY, setStartY] = useState(0);
   const [offsetX, setOffsetX] = useState(0);
   const [offsetY, setOffsetY] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const boxRef: any = useRef(null);
   const overlayRef: any = useRef(null);
@@ -32,7 +33,7 @@ const SRImage = ({ index }: { index: number | undefined }) => {
     }
   };
 
-  const drawImage = (image: any) => {
+  const drawImage = async (image: any) => {
     const canvas: any = canvasRef.current;
     const ctx = canvas?.getContext('2d');
     if (ctx) {
@@ -44,7 +45,9 @@ const SRImage = ({ index }: { index: number | undefined }) => {
       overlayRef.width = image.width;
       overlayRef.height = image.height;
 
-      ctx.drawImage(image, offsetX, offsetY);
+      await ctx.drawImage(image, offsetX, offsetY);
+
+      setLoading(false);
     }
   };
 
@@ -92,6 +95,12 @@ const SRImage = ({ index }: { index: number | undefined }) => {
         onMouseUp={handleMouseUp}
         onMouseOut={handleMouseUp}
       >
+        {loading ? (
+          <p className='absolute left-1/2 top-1/2'>
+            <ClipLoader size={36} color='green' />
+          </p>
+        ) : null}
+
         <canvas
           className='w-[4000px]'
           ref={canvasRef}
