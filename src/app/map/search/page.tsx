@@ -103,7 +103,7 @@ const Map = () => {
       </header>
       <div className='flex w-full'>
         <div
-          className=' overflow-auto mt-16 scrollbar relative grid'
+          className=' overflow-auto mt-16 scrollbar relative grid min-w-[700px] max-w-[1000px]'
           style={{ gridTemplateColumns: 'repeat(24, minmax(0, 1fr))' }}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}

@@ -88,7 +88,7 @@ const SRImage = ({ index }: { index: number | undefined }) => {
   return (
     <div className='w-full p-2'>
       <div
-        className='max-w-[1000px] max-h-[1000px] mx-auto overflow-auto scrollbar relative'
+        className='max-w-[700px] max-h-[700px] mx-auto overflow-auto scrollbar relative'
         ref={boxRef}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}

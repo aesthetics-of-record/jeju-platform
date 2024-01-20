@@ -22,8 +22,8 @@ const DialogButton = ({
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
-      <DialogContent className='w-[1100px] h-[1100px]'>
-        <Tabs defaultValue='nonSR' className='w-[1050px] mt-4'>
+      <DialogContent className='w-[800px] h-[850px]'>
+        <Tabs defaultValue='nonSR' className='w-[750px] mt-4'>
           <TabsList className='grid w-full grid-cols-2'>
             <TabsTrigger value='nonSR'>이미지(1000x1000)</TabsTrigger>
             <TabsTrigger value='SR'>증강이미지(4000x4000)</TabsTrigger>
