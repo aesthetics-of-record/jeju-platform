@@ -2,12 +2,18 @@
 
 import DialogButton from '@/components/DialogButton';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
-import { FaSearchLocation } from 'react-icons/fa';
+import { TbWorldSearch } from 'react-icons/tb';
 
 const Map = () => {
   const imageUrl = '/PNG/0.png';
@@ -134,6 +140,16 @@ const Map = () => {
         </div>
         <aside className='p-4'>
           <Card className='w-[500px] m-auto'>
+            <CardHeader>
+              <CardTitle className='flex gap-2'>
+                <TbWorldSearch />
+                이미지 확대 미리보기
+              </CardTitle>
+              <CardDescription>
+                이미지 확대사진을 미리 볼 수 있습니다. 원하시는 부분에 마우스를
+                가져 다 주세요.
+              </CardDescription>
+            </CardHeader>
             <CardContent className='mt-4'>
               <div>
                 {hover === -1 ? null : (
