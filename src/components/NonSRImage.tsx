@@ -292,7 +292,7 @@ const NonSRImage = ({
           </ToggleGroupItem>
         </ToggleGroup>
         <div className='fixed z-0'>
-          <p className='ml-40 mt-2'>{text}</p>
+          <p className='ml-40 mt-1 text-lg text-green-600 font-bold'>{text}</p>
         </div>
         <canvas
           className='w-[1000px]'
