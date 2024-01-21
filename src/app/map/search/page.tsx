@@ -26,6 +26,11 @@ const Map = () => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [openDialog2, setOpenDialog2] = useState<boolean>(false);
 
+  let [position, setPosition] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
+
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
@@ -98,6 +103,7 @@ const Map = () => {
         index={clickIndex}
         openDialog={openDialog}
         setOpenDialog={setOpenDialog}
+        position={position}
       />
       <SegYDialog
         index={clickIndex}
@@ -132,6 +138,11 @@ const Map = () => {
           onMouseOut={handleMouseUp}
         >
           {Array.from({ length: 450 }).map((_, index) => {
+            let position = {
+              x: (index % 25) * 1000,
+              y: Math.floor(index / 25) * 1000,
+            };
+
             return (
               <>
                 {(index + 1) % 25 === 0 ? null : (
@@ -148,7 +159,8 @@ const Map = () => {
                       width={50}
                       height={50}
                       onMouseOver={() => {
-                        // console.log(hover);
+                        // console.log(position);
+                        setPosition(position);
                         setClickIndex(index);
                         setHover(index);
                       }}

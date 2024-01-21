@@ -17,10 +17,12 @@ const SearchDialog = ({
   openDialog,
   setOpenDialog,
   index,
+  position
 }: {
   openDialog: boolean;
   setOpenDialog: any;
-  index?: number;
+  index: number;
+  position: any;
 }) => {
   return (
     <Dialog
@@ -53,7 +55,7 @@ const SearchDialog = ({
               <TabsContent value='nonSR'>
                 <Card>
                   <CardContent className='space-y-2'>
-                    <NonSRImage index={index} />
+                    <NonSRImage index={index} position={position}/>
                   </CardContent>
                 </Card>
               </TabsContent>
@@ -84,7 +86,7 @@ const SearchDialog = ({
                 <TabsContent value='nonSR'>
                   <Card>
                     <CardContent className='space-y-2'>
-                      <NonSRImage index={index} />
+                      <NonSRImage index={index} position={position}/>
                     </CardContent>
                   </Card>
                 </TabsContent>
@@ -112,7 +114,7 @@ const SearchDialog = ({
                 <TabsContent value='nonSR'>
                   <Card>
                     <CardContent className='space-y-2'>
-                      <NonSRImage index={index} />
+                      <NonSRImage index={index} position={position}/>
                     </CardContent>
                   </Card>
                 </TabsContent>
