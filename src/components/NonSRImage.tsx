@@ -37,6 +37,9 @@ const NonSRImage = ({
   const [bboxList, setBboxList] = useState([]);
   const [mode, setMode] = useState<any>(null);
 
+  // 텍스트
+  const [text, setText] = useState<string>('');
+
   const boxRef: any = useRef(null);
   const overlayRef: any = useRef(null);
 
@@ -83,11 +86,26 @@ const NonSRImage = ({
   // 선을 그리는 함수
   function drawLine(ctx: any, startX: any, startY: any, endX: any, endY: any) {
     ctx.beginPath();
-    ctx.strokeStyle = 'black';
+    ctx.strokeStyle = 'red';
     ctx.lineWidth = 2;
     ctx.moveTo(startX, startY);
     ctx.lineTo(endX, endY);
     ctx.stroke();
+
+    // 텍스트 설정
+    ctx.font = '16px Arial';
+    ctx.fillStyle = 'red';
+
+    axios
+      .get(
+        `/api/distance?x1=${parseInt(position.x + startX)}&y1=${parseInt(
+          position.y + startY
+        )}&x2=${parseInt(position.x + endX)}&y2=${parseInt(position.y + endY)}`
+      )
+      .then((res) => {
+        // 텍스트 그리기 (여기서는 (100, 100) 위치에 텍스트를 그립니다)
+        setText(`(거리(km): ${res.data.distance})`);
+      });
   }
 
   const drawFlag = (ctx: any, x: any, y: any) => {
@@ -102,17 +120,17 @@ const NonSRImage = ({
     ctx.fill();
 
     // 텍스트 설정
-    ctx.font = '20px Arial';
+    ctx.font = '12px Arial';
 
     axios
-      .get(apiOrigin + `/api/position?x=${position.x}&y=${position.y}`)
+      .get(
+        `/api/position?x=${parseInt(position.x + x)}&y=${parseInt(
+          position.y + y
+        )}`
+      )
       .then((res) => {
         // 텍스트 그리기 (여기서는 (100, 100) 위치에 텍스트를 그립니다)
-        ctx.fillText(
-          `(위도: ${res.data.latitude}) / (경도: ${res.data.longitude})`,
-          x - 10,
-          y + 23
-        );
+        setText(`(위도: ${res.data.latitude}) / (경도: ${res.data.longitude})`);
       });
   };
 
@@ -197,7 +215,7 @@ const NonSRImage = ({
         const currentY = evt.clientY - rect.top;
 
         ctx.beginPath();
-        ctx.strokeStyle = 'black';
+        ctx.strokeStyle = 'red';
         ctx.lineWidth = 2;
         ctx.rect(
           startPoint.x,
@@ -235,7 +253,7 @@ const NonSRImage = ({
         onMouseOut={handleMouseUp}
         onDoubleClick={onDobleClick}
       >
-        <ToggleGroup type='single' className='fixed'>
+        <ToggleGroup type='single' className='fixed z-10'>
           <ToggleGroupItem
             value='line'
             onClick={() => {
@@ -273,8 +291,8 @@ const NonSRImage = ({
             <IoFlagOutline />
           </ToggleGroupItem>
         </ToggleGroup>
-        <div className='fixed'>
-          <p></p>
+        <div className='fixed z-0'>
+          <p className='ml-40 mt-2'>{text}</p>
         </div>
         <canvas
           className='w-[1000px]'

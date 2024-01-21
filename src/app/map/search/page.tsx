@@ -179,7 +179,8 @@ const Map = () => {
               </CardTitle>
               <CardDescription>
                 이미지 확대사진을 미리 볼 수 있습니다. 원하시는 부분에 마우스를
-                가져 다 주세요.
+                가져 다 주세요. 그리고 원하는 부분에 마우스 오른쪽 클릭을 하여
+                더 다양한 기능을 사용할 수 있습니다.
               </CardDescription>
             </CardHeader>
             <CardContent className='mt-4'>
