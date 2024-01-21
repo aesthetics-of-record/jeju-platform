@@ -1,6 +1,5 @@
 'use client';
 
-import DialogButton from '@/components/DialogButton';
 import SearchContextMenu from '@/components/SearchContextMenu';
 import SearchDialog from '@/components/SearchDialog';
 import SegYDialog from '@/components/SegYDialog';

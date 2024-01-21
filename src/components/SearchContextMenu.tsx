@@ -5,7 +5,6 @@ import {
   ContextMenuShortcut,
   ContextMenuTrigger,
 } from '@/components/ui/context-menu';
-import DialogButton from './DialogButton';
 
 export default function SearchContextMenu({
   children,
