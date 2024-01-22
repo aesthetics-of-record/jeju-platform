@@ -24,6 +24,7 @@ const Map = () => {
   const [clickIndex, setClickIndex] = useState<number>(-1);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [openDialog2, setOpenDialog2] = useState<boolean>(false);
+  const parking_list = [70, 194, 220, 248, 271, 394];
 
   let [position, setPosition] = useState<{ x: number; y: number }>({
     x: 0,
@@ -152,18 +153,23 @@ const Map = () => {
                     openDialog2={openDialog2}
                     setOpenDialog2={setOpenDialog2}
                   >
-                    <Image
-                      src={`/PNG/${index}.png`}
-                      alt='image'
-                      width={50}
-                      height={50}
-                      onMouseOver={() => {
-                        // console.log(position);
-                        setPosition(position);
-                        setClickIndex(index);
-                        setHover(index);
-                      }}
-                    />
+                    <div className='relative'>
+                      <Image
+                        src={`/PNG/${index}.png`}
+                        alt='image'
+                        width={50}
+                        height={50}
+                        onMouseOver={() => {
+                          // console.log(position);
+                          setPosition(position);
+                          setClickIndex(index);
+                          setHover(index);
+                        }}
+                      />
+                      {parking_list.includes(index) ? (
+                        <div className='absolute top-1/2 left-1/2  w-1 h-1 rounded-full bg-red-600' />
+                      ) : null}
+                    </div>
                   </SearchContextMenu>
                 )}
               </>

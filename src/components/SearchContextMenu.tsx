@@ -23,7 +23,7 @@ export default function SearchContextMenu({
 }) {
   return (
     <ContextMenu>
-      <ContextMenuTrigger>{children}</ContextMenuTrigger>
+      <ContextMenuTrigger className=''>{children}</ContextMenuTrigger>
       <ContextMenuContent className='w-64'>
         <ContextMenuItem
           inset
@@ -40,7 +40,7 @@ export default function SearchContextMenu({
             setOpenDialog2(true);
           }}
         >
-          비상착륙구역
+          착륙구역
           <ContextMenuShortcut>⌘</ContextMenuShortcut>
         </ContextMenuItem>
       </ContextMenuContent>
